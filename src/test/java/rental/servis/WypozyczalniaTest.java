@@ -8,6 +8,7 @@ import pl.sda.arppl4.rental.model.StatusSamochodu;
 import pl.sda.arppl4.rental.model.TypNadwozia;
 import pl.sda.arppl4.rental.servis.Wypozyczalnia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WypozyczalniaTest {
@@ -17,7 +18,7 @@ public class WypozyczalniaTest {
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
 
-        wypozyczalnia.dodajSamochod(testowanySamochod.getNumerRejstracyjny(), testowanySamochod.getSkrzynia(), testowanySamochod.getTyp(), testowanySamochod.getStatus());
+        wypozyczalnia.dodajSamochod(testowanySamochod);
 
         List<Samochod> wynikZwroconaLista = wypozyczalnia.zwrocListe();
         wynikZwroconaLista.contains(testowanySamochod);
@@ -31,8 +32,8 @@ public class WypozyczalniaTest {
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
 
-        wypozyczalnia.dodajSamochod(testowanySamochod.getNumerRejstracyjny(), testowanySamochod.getSkrzynia(), testowanySamochod.getTyp(), testowanySamochod.getStatus());
-        wypozyczalnia.dodajSamochod(testowanySamochodDrugi.getNumerRejstracyjny(), testowanySamochodDrugi.getSkrzynia(), testowanySamochodDrugi.getTyp(), testowanySamochodDrugi.getStatus());
+        wypozyczalnia.dodajSamochod(testowanySamochod);
+        wypozyczalnia.dodajSamochod(testowanySamochodDrugi);
 
         List<Samochod> wynikZwroconaLista = wypozyczalnia.zwrocListe();
         Assert.assertEquals("Lista powinna zawierac dokladnie 1 pojazd", 1, wynikZwroconaLista.size());
@@ -46,8 +47,8 @@ public class WypozyczalniaTest {
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
 
-        wypozyczalnia.dodajSamochod(testowanySamochod.getNumerRejstracyjny(), testowanySamochod.getSkrzynia(), testowanySamochod.getTyp(), testowanySamochod.getStatus());
-        wypozyczalnia.dodajSamochod(testowanySamochodDrugi.getNumerRejstracyjny(), testowanySamochodDrugi.getSkrzynia(), testowanySamochodDrugi.getTyp(), testowanySamochodDrugi.getStatus());
+        wypozyczalnia.dodajSamochod(testowanySamochod);
+        wypozyczalnia.dodajSamochod(testowanySamochodDrugi);
 
         wypozyczalnia.zwrocListeDostepnych();
         List<Samochod> wynikZwroconaListaWszystkich = wypozyczalnia.zwrocListe();
@@ -64,7 +65,7 @@ public class WypozyczalniaTest {
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
 
-        wypozyczalnia.dodajSamochod(testowanySamochod.getNumerRejstracyjny(), testowanySamochod.getSkrzynia(), testowanySamochod.getTyp(), testowanySamochod.getStatus());
+        wypozyczalnia.dodajSamochod(testowanySamochod);
 
         List<Samochod> wynikZwroconaLista = wypozyczalnia.zwrocListe();
         wynikZwroconaLista.contains(testowanySamochod);
@@ -74,7 +75,5 @@ public class WypozyczalniaTest {
         Assert.assertTrue("Samochod stał sie niedostepny", wynikZwroconaLista.get(0).getStatus().equals(StatusSamochodu.NIEDOSTEPNY));
     }
     @Test
-    public void test_uzytkownikNieZepsujeMetodyZmianyStatusuNaNiedostepnyPrzekazujacNieistniejacySamochod(){
 
-    }
 }

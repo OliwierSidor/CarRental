@@ -12,7 +12,5 @@ public class Samochod {
     private SkrzyniaBiegow skrzynia;
     private TypNadwozia typ;
     private StatusSamochodu status;
-
-
-
+    private Double cena;
 }
