@@ -18,6 +18,8 @@ public class InterfejsUzytkownika {
                     obsluzPracownika(wypozyczalnia);
                 } else if (rola.equalsIgnoreCase("2")) {
                     obsluzKlienta(wypozyczalnia);
+                } else if (rola.equalsIgnoreCase("3")){
+                    System.out.println("Do widzenia!");
                 } else {
                     System.out.println("Wystąpił błąd");
                 }
@@ -45,7 +47,7 @@ public class InterfejsUzytkownika {
                 case 4 -> wypozyczalnia.dodajSamochod();
                 case 5 -> wypozyczalnia.usunSamochod();
                 case 6 -> System.out.println("Do widzenia");
-                default -> System.out.println("Nie rozumiem. Wpisz: '1' lub '2' lub '3'");
+                default -> System.out.println("Nie rozumiem. Wpisz: 1/2/3/4/5/6");
             }
         } while (czynnosc != 6);
     }
@@ -67,7 +69,8 @@ public class InterfejsUzytkownika {
                 case 3 -> wypozyczalnia.wyswietlCeneSamochodu();
                 case 4 -> wypozyczalnia.wynajmijSamochod();
                 case 5 -> wypozyczalnia.oddajSamochod();
-                default -> System.out.println("Nie rozumiem. Wpisz: '1' lub '2' lub '3'");
+                case 6 -> System.out.println("Do widzenia");
+                default -> System.out.println("Nie rozumiem. Wpisz: 1/2/3/4/5/6");
             }
         } while (czynnosc != 6);
     }
