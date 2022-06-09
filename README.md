@@ -10,21 +10,21 @@ stworzony dla celów edukacyjnych. Zawiera implementację Java oraz testy jednos
 W aplikacji możliwe jest:
 
 - wpisywanie komend konsolowych:
-    - dodaj samochod
-    - lista samochod
-    - lista dostepnych samochodow
-    - lista wynajetych samochodow
-    - usun samochod (oznacz jako niedostepny)
+    - dodaj samochód
+    - lista samochodów
+    - lista dostępnych samochodów
+    - lista wynajętych samochodów
+    - usuń samochód (oznacz jako niedostępny)
 - użytkownik ma możliwość:
-    - wyświedlić lsite samochodw
-    - lista dostepnych samochodow
-    - sprawdzic cene samochodu
-    - wynajac samochod
-    - zwrocic samochod
-- pracownik ma mozliwosc:
-    - wyświetlic liste samochodow
-    - wyswietlic liste wynajmow aktywnych
-    - wyswietlic archiwum wynajmów
+    - wyświetlić listę samochodów
+    - lista dostępnych samochodów
+    - sprawdzić cenę samochodu
+    - wynająć samochód
+    - zwrócić samochód
+- pracownik ma możliwość:
+    - wyświetlić listę samochodów
+    - wyświetlić listę wynajmów aktywnych
+    - wyświetlić archiwum wynajmów
 
 #### Jak uruchomić
 

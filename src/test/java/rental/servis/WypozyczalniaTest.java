@@ -8,13 +8,12 @@ import pl.sda.arppl4.rental.model.StatusSamochodu;
 import pl.sda.arppl4.rental.model.TypNadwozia;
 import pl.sda.arppl4.rental.servis.Wypozyczalnia;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WypozyczalniaTest {
     @Test
     public void test_mozliweJestDodawanieSamochodu() {
-        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMATYCZNA, TypNadwozia.CABRIO, StatusSamochodu.DOSTEPNY);
+        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMAT, TypNadwozia.CABRIO, StatusSamochodu.DOSTEPNY);
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
 
@@ -27,7 +26,7 @@ public class WypozyczalniaTest {
 
     @Test
     public void test_nieJestMozliweNadpisanieSamochodu() {
-        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMATYCZNA, TypNadwozia.SUV, StatusSamochodu.DOSTEPNY);
+        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMAT, TypNadwozia.SUV, StatusSamochodu.DOSTEPNY);
         Samochod testowanySamochodDrugi = new Samochod("test1", SkrzyniaBiegow.MANUAL, TypNadwozia.CABRIO, StatusSamochodu.NIEDOSTEPNY);
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
@@ -42,7 +41,7 @@ public class WypozyczalniaTest {
 
     @Test
     public void test_mozemyPobracListeSamochodowDostepnych(){
-        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMATYCZNA, TypNadwozia.SUV, StatusSamochodu.DOSTEPNY);
+        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMAT, TypNadwozia.SUV, StatusSamochodu.DOSTEPNY);
         Samochod testowanySamochodDrugi = new Samochod("test2", SkrzyniaBiegow.MANUAL, TypNadwozia.CABRIO, StatusSamochodu.NIEDOSTEPNY);
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
@@ -61,7 +60,7 @@ public class WypozyczalniaTest {
 
     @Test
     public void test_mozemyZmieniecStatusSamochoduNaNiedostepny(){
-        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMATYCZNA, TypNadwozia.CABRIO, StatusSamochodu.DOSTEPNY);
+        Samochod testowanySamochod = new Samochod("test1", SkrzyniaBiegow.AUTOMAT, TypNadwozia.CABRIO, StatusSamochodu.DOSTEPNY);
 
         Wypozyczalnia wypozyczalnia = new Wypozyczalnia();
 

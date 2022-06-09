@@ -1,7 +1,9 @@
 package pl.sda.arppl4.rental.servis;
 
 import pl.sda.arppl4.rental.model.Samochod;
+import pl.sda.arppl4.rental.model.SkrzyniaBiegow;
 import pl.sda.arppl4.rental.model.StatusSamochodu;
+import pl.sda.arppl4.rental.model.TypNadwozia;
 
 import java.util.*;
 
@@ -9,6 +11,7 @@ public class Wypozyczalnia {
     private Map<String, Samochod> pojazdy = new HashMap<>();
     private List<Samochod> archiwumWypozyczen = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
+    private static final String NUMER_REJESTRACYJNY = "Podaj numer rejestracyjny";
 
     public void dodajSamochod(Samochod samochod) {
         if (!pojazdy.containsKey(samochod.getNumerRejstracyjny())) {
@@ -16,8 +19,54 @@ public class Wypozyczalnia {
         }
     }
 
+    private SkrzyniaBiegow pobierzSkrzynieBiegow() {
+        try {
+            return SkrzyniaBiegow.valueOf(scanner.next().toUpperCase());
+        } catch (Exception exception) {
+            System.out.println("Wystąpił błąd przy pobieraniu skrzyni biegów, podaj jeszcze raz ");
+            return pobierzSkrzynieBiegow();
+        }
+    }
+
+    private TypNadwozia pobierzTypNadwozia() {
+        try {
+            return TypNadwozia.valueOf(scanner.next().toUpperCase());
+        } catch (Exception exception) {
+            System.out.println("Wystąpił błąd przy pobieraniu typu nadwozia, podaj jeszcze raz");
+            return pobierzTypNadwozia();
+        }
+    }
+
+    private Double pobierzCene() {
+        try {
+            return Double.valueOf(scanner.next());
+        } catch (Exception exception) {
+            System.out.println("Wpisałeś zły format ceny, podaj jeszcze raz");
+            return pobierzCene();
+        }
+    }
+
+    public void dodajSamochod() {
+        System.out.println(NUMER_REJESTRACYJNY);
+        String numerRejstracyjny = scanner.next();
+        System.out.println("Podaj typ skrzyni biegów (manual/automat)");
+        SkrzyniaBiegow skrzyniaBiegow = pobierzSkrzynieBiegow();
+        System.out.println("Podaj typ nadwozia (SUV, SEDAN, CABRIO)");
+        TypNadwozia typNadwozia = pobierzTypNadwozia();
+        System.out.println("Podaj cenę za jeden dzień użytkowania");
+        double cena = pobierzCene();
+        Samochod samochod = new Samochod(numerRejstracyjny, skrzyniaBiegow, typNadwozia, StatusSamochodu.DOSTEPNY, typNadwozia.getCenaBazowa());
+        pojazdy.put(numerRejstracyjny.toUpperCase(), samochod);
+    }
+
     public void usunSamochod(String numerRejstracyjny) {
         pojazdy.get(numerRejstracyjny).setStatus(StatusSamochodu.NIEDOSTEPNY);
+    }
+
+    public void usunSamochod() {
+        System.out.println(NUMER_REJESTRACYJNY);
+        String numerRejstracyjny = scanner.next();
+        pojazdy.remove(numerRejstracyjny.toUpperCase());
     }
 
     public void wynajmijSamochod(String numerRejstracyjny) {
@@ -29,8 +78,8 @@ public class Wypozyczalnia {
     }
 
     public void wynajmijSamochod() {
-        System.out.println("Podaj numer rejstracyjny");
-        String numerRejstracyjny = scanner.next();
+        System.out.println(NUMER_REJESTRACYJNY);
+        String numerRejstracyjny = scanner.next().toUpperCase();
         wynajmijSamochod(numerRejstracyjny);
     }
 
@@ -42,8 +91,8 @@ public class Wypozyczalnia {
     }
 
     public void oddajSamochod() {
-        System.out.println("Podaj numer rejstracyjny");
-        String numerRejstracyjny = scanner.next();
+        System.out.println(NUMER_REJESTRACYJNY);
+        String numerRejstracyjny = scanner.next().toUpperCase();
         oddajSamochod(numerRejstracyjny);
     }
 
@@ -76,6 +125,7 @@ public class Wypozyczalnia {
     }
 
     public void wyswietlListeWszystkich() {
+        System.out.println("Lista wszystkich samochodów");
         List<Samochod> samochody = zwrocListeWszystkich();
         for (Samochod samochod : samochody) {
             System.out.println(samochod);
@@ -83,6 +133,7 @@ public class Wypozyczalnia {
     }
 
     public void wyswietlListeWynajetych() {
+        System.out.println("Lista wynajetych samochodów");
         List<Samochod> samochody = zwrocListeWynajetych();
         for (Samochod samochod : samochody) {
             System.out.println(samochod);
@@ -90,6 +141,7 @@ public class Wypozyczalnia {
     }
 
     public void wyswietlListeDostepnych() {
+        System.out.println("Lista dostępnych samochodów");
         List<Samochod> samochody = zwrocListeDostepnych();
         for (Samochod samochod : samochody) {
             System.out.println(samochod);
@@ -97,6 +149,7 @@ public class Wypozyczalnia {
     }
 
     public void wyswietlArchiwumWynajmow() {
+        System.out.println("Lista archiwalnych wynajmów");
         List<Samochod> samochody = zwrocArchiwumWynajmow();
         for (Samochod samochod : samochody) {
             System.out.println(samochod);
@@ -104,17 +157,16 @@ public class Wypozyczalnia {
     }
 
     public void wyswietlCeneSamochodu() {
-        System.out.println("Podaj numer rejstracyjny");
+        System.out.println(NUMER_REJESTRACYJNY);
         String numerRejstracyjny = scanner.next().toUpperCase();
         wyswietlCeneSamochodu(numerRejstracyjny);
     }
 
     public void wyswietlCeneSamochodu(String numerRejstracyjny) {
+        System.out.println("Cena samochodu" + numerRejstracyjny);
         if (pojazdy.containsKey(numerRejstracyjny)) {
             Samochod samochod = pojazdy.get(numerRejstracyjny);
             System.out.println(samochod.getCena());
         }
     }
-
-
 }
