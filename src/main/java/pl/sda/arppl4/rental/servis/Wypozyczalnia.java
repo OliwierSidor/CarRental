@@ -10,8 +10,8 @@ import java.util.*;
 public class Wypozyczalnia {
     private Map<String, Samochod> pojazdy = new HashMap<>();
     private List<Samochod> archiwumWypozyczen = new ArrayList<>();
-    private Scanner scanner = new Scanner(System.in);
-    private static final String NUMER_REJESTRACYJNY = "Podaj numer rejestracyjny";
+    private final Scanner scanner = new Scanner(System.in);
+    private static final String NUMER_REJESTRACYJNY = "Podaj numer rejestracyjny ";
 
     public void dodajSamochod(Samochod samochod) {
         if (!pojazdy.containsKey(samochod.getNumerRejstracyjny())) {
@@ -55,7 +55,7 @@ public class Wypozyczalnia {
         TypNadwozia typNadwozia = pobierzTypNadwozia();
         System.out.println("Podaj cenę za jeden dzień użytkowania");
         double cena = pobierzCene();
-        Samochod samochod = new Samochod(numerRejstracyjny, skrzyniaBiegow, typNadwozia, StatusSamochodu.DOSTEPNY, typNadwozia.getCenaBazowa());
+        Samochod samochod = new Samochod(numerRejstracyjny, skrzyniaBiegow, typNadwozia, StatusSamochodu.DOSTEPNY, cena);
         pojazdy.put(numerRejstracyjny.toUpperCase(), samochod);
     }
 
@@ -157,9 +157,9 @@ public class Wypozyczalnia {
     }
 
     public void wyswietlCeneSamochodu() {
-        System.out.println(NUMER_REJESTRACYJNY);
+        System.out.println(NUMER_REJESTRACYJNY + " ");
         String numerRejstracyjny = scanner.next().toUpperCase();
-        wyswietlCeneSamochodu(numerRejstracyjny);
+        wyswietlCeneSamochodu(" " + numerRejstracyjny);
     }
 
     public void wyswietlCeneSamochodu(String numerRejstracyjny) {
